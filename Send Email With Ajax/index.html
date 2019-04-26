@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tntdpc-Disruptive Technologies</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='icon' href='images/logo.jpg' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  
+			<form id="form2" name="form2" role="form" method="post" action="">
+                  <input class="form-control" type="text" name="c_name" placeholder="Name" required>	<br><br>
+                  <input class="form-control" type="email" name="c_email"  placeholder="Email" required>	<br><br>
+                  <input class="form-control" type="text" name="c_mobile" placeholder="Mobile Number">	<br><br>
+                  <textarea class="form-control" name="c_message" placeholder="Messages" required></textarea>	<br><br>
+                  <button type="submit" class="btn">SEND NOW <span><i class="ion-ios-arrow-thin-right"></i></span></button><br>
+                </form>
+		</div>
+		</div>
+
+
+
+<script>
+	var form = $('#form2');
+	form.submit(function(event){
+	event.preventDefault();
+	var form_status = $('<div class="form_status"></div>');
+	$.ajax({
+	type: "POST",
+	url: "operation (1).php",
+	data: form.serialize() +'&operation=Sendmail',
+	beforeSend: function(){
+	form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin"></i> Message is sending...</p>').fadeIn() );
+	}
+	}).done(function(data){
+	form_status.html('<p class="text-success">Thank you for contact us.</p>').delay(3000).fadeOut();
+	$("#form2")[0].reset();
+	});
+	});
+	</script>
+	<script>
+	$(window).on('load', function () {
+		"use strict";
+	   
+		$(".preeloader").fadeOut(1000);
+	
+	});
+	</script>
+
+</body>
+</html>
